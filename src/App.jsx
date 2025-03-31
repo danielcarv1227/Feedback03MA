@@ -2,34 +2,47 @@ import iconStar from "./images/icon-star.svg"
 import  { useState } from "react"
 
 export function App() {
-  const [notaAvaliacao, setNotaAvalicao] = useState(0)
+  const [submited, setSubmited] = useState(false)
+  const[rateNote, setRateNote] = useState(0)
 
-  function handleAlterarNotaAvaliacao(nota) {
-    setNotaAvalicao(nota)
+  function handleSubmited() {
+    if (rateNote !== 0) {
+      setSubmited(true)
+      return
+    }
 
-    console.log(nota)
+    alert("Please, choose a rate button!")
+  }
+
+  function handleChangeRateNote(value) {
+    setRateNote(value)
   }
 
   return (
-    <div className="bg-gradient-dark mx-6 p-6 rounded-2xl text-white font-overpass">
-      <div className="bg-dark-blue p-4 w-fit rounded-full mb-4">
-        <img src={iconStar} alt="icon star" />
-      </div>
+    <div className="h-svh bg-gradient-dark mx-6 p-6 rounded-2xl text-white font-overpass flex justify-center items-center px-6">
+      {submited === false ? (
+        <div className="bg-radia-gradient max-w-103 px-6 pt-6 pb-8 rounded-2xl font-overpass">
+          <div className="bg-dark-blue p-4 w-fit rounded-full mb-4">
+            <img src={iconStar} alt="icone da estrela" />
+          </div>
+    
+          <h1 className="text-2xl font-bold mb-2.5">How did we do?</h1>
+    
+          <p className="text-light-grey text-sm leading-1 mb-6">Please let us know how did we did with your support request. All feedback is apreciated to help us improve our offering!</p>
 
-      <h1 className="text-2xl font-bold mb-2.5">How did we do?</h1>
+          <div className="flex justify-between mb-6">
+            <input type="button" value={1} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey font-bold focus:bg-medium-grey focus:text-white" onClick={() => handleChangeRateNote(1)} />
+            <input type="button" value={2} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey font-bold focus:bg-medium-grey focus:text-white" onClick={() => handleChangeRateNote(1)}/>
+            <input type="button" value={3} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey font-bold focus:bg-medium-grey focus:text-white" onClick={() => handleChangeRateNote(1)}/>
+            <input type="button" value={4} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey font-bold focus:bg-medium-grey focus:text-white" onClick={() => handleChangeRateNote(1)}/>
+            <input type="button" value={5} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey font-bold focus:bg-medium-grey focus:text-white" onClick={() => handleChangeRateNote(1)}/>
+          </div>  
 
-      <p className="text-light-grey text-sm leading-1 mb-6">Please let us know how did we did with your support request. All feedback is apreciated to help us improve our offering!</p>
-      <div className="flex justify-between mb-6">
-        <input type="button" value={1} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey" onClick={() => handleAlterarNotaAvaliacao(1)}/>
-        <input type="button" value={2} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey" onClick={() => handleAlterarNotaAvaliacao(2)}/>
-        <input type="button" value={3} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey" onClick={() => handleAlterarNotaAvaliacao(3)}/>
-        <input type="button" value={4} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey" onClick={() => handleAlterarNotaAvaliacao(4)}/>
-        <input type="button" value={5} className="bg-dark-blue w-10.5 h-10.5 rounded-full text-sm leading-2 text-medium-grey" onClick={() => handleAlterarNotaAvaliacao(5)}/>
-        </div>  
-      <div>
-        <button className="bg-orange w-full py-3 uppercase text-sm rounded-3xl tracking-1 font-bold">Submit</button>
-      </div>
-
+          <button className="bg-orange w-full py-3 uppercase rounded-3xl font-bold tracking-1" onClick={handleSubmited}>Submit</button>
+        </div>
+      ):(
+        <div></div>
+      )}
     </div>
   )
 }
